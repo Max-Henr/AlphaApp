@@ -1,0 +1,50 @@
+﻿@model RegisterModel
+
+@{
+	Layout = "_AuthLayout";
+}
+<div class="auth-container">
+	<div class="register-card">
+		<h1 class="register-title">Create Account</h1>
+		<button class="btn-google"><i class="fab fa-google"></i> Sign in with Google</button>
+		<div class="divider">
+			<span>or</span>
+		</div>
+		<form method="post" asp-controller="Auth" asp-action="Register" novalidate class="sign-in-form">
+			<div class="name-div">
+				<label class="field-label" asp-for="FirstName"></label>
+				<input class="text-input" asp-for="FirstName" />
+				<span asp-validation-for="FirstName"></span>
+			</div>
+			<div class="name-div">
+				<label class="field-label" asp-for="LastName"></label>
+				<input class="text-input" asp-for="LastName" />
+				<span asp-validation-for="LastName"></span>
+			</div>
+			<div class="email-div">
+				<label class="field-label" asp-for="Email"></label>
+				<input class="text-input" asp-for="Email" />
+				<span  asp-validation-for="Email"></span>
+			</div>
+			<div class="password-div">
+				<label class="field-label" asp-for="Password"></label>
+				<input class="text-input" asp-for="Password"/>
+				<span  asp-validation-for="Password"></span>
+			</div>
+			<div class="confirm-password-div">
+				<label class="field-label" asp-for="ConfirmPassword"></label>
+				<input class="text-input" asp-for="ConfirmPassword" />
+				<span asp-validation-for="ConfirmPassword"></span>
+			</div>
+			<div class="remember-me-forgot-password-flex">
+				<div class="tos-checkbox">
+					<input type="checkbox" asp-for="TermsAndConditions"/>
+					<span>I accept <a>Terms and Conditions</a></span>
+					<span asp-validation-for="TermsAndConditions"></span>
+				</div>
+			</div>
+			<input class="btn-sign-in" type="submit" value="Create Account" />
+		</form>
+		<span class="redirect-to-sign-in">Already have an account <a asp-area="Identity" asp-controller="Auth" asp-action="SignIn">Log In</a></span>
+	</div>
+</div>

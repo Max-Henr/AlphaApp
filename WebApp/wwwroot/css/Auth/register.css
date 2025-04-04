@@ -1,0 +1,27 @@
+﻿.register-card {
+    width: 600px;
+/*    height: 800px;*/
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    padding-top: 5rem;
+}
+.redirect-to-sign-in {
+    margin-top: 1.5rem;
+    a{
+        color: var(--accent);
+     }
+}
+.name-div{
+    width: 100%;
+    position: relative;
+}
+.confirm-password-div {
+    width: 100%;
+    position: relative;
+}

@@ -1,0 +1,22 @@
+﻿<div class="header-flex">
+	<form class="input-form">
+		<i class="fa-solid fa-magnifying-glass"></i>
+		<input class="input-search" type="text" placeholder="Search..." />
+	</form>
+	<div class="btn-flex">
+		<button>
+			<i class="fa-solid fa-bell"></i>
+		</button>
+		<button>
+			<i class="fa-solid fa-gear"></i>
+		</button>
+	</div>
+	@if (SignInManager.IsSignedIn(User))
+	{
+		<a class="sign-in" asp-area="Identity" asp-controller="Auth" asp-action="SignOut">sign Out <i class="fa-solid fa-right-to-bracket"></i></a>
+	}
+	else
+	{
+		<a class="sign-in" asp-area="Identity" asp-controller="Auth" asp-action="SignIn">sign in <i class="fa-solid fa-right-to-bracket"></i></a>
+	}
+</div>

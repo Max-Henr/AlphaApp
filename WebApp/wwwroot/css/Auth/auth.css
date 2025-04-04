@@ -1,0 +1,30 @@
+﻿.btn-google {
+    width: 400px;
+    height: 45px;
+    border-radius: 8px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #adb5bd;
+    font-size: 14px;
+    width: 430px;
+}
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 0 10px;
+}
+.email-div {
+    width: 100%;
+    position: relative;
+}
+
+.password-div {
+    width: 100%;
+    position: relative;
+}

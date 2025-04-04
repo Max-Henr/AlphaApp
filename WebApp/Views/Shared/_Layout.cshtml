@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp</title>
+    <script type="importmap"></script>
+    <script src="https://kit.fontawesome.com/373619c028.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/reset.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/SideBar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/project.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/projectCard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/addProject.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="wrapper">
+        <main role="main" class="layout-flex container">
+            @await Html.PartialAsync("Partials/_AddProjectPartial")
+            <div>
+                @await Html.PartialAsync("Partials/_SideBarPartial")
+            </div>
+			<div class="header-main-flex">
+                @await Html.PartialAsync("Partials/_HeaderPartial")	
+                @RenderBody()
+            </div>
+	        
+        </main>
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

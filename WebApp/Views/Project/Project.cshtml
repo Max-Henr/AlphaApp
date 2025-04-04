@@ -1,0 +1,24 @@
+﻿@{
+	Layout = "_Layout";
+}
+
+<div class="project-flex">
+	<div class="project-nav">
+		<h1 class="project-title">Projects</h1>
+		<button class="btn-add-project" id="open-add-project" data-modal="true" data-target="#project-modal">
+			Add Project
+		</button>
+		<ul class="project-status">
+			<li>
+				<a class="project-status-link">All []</a>				
+			</li>
+			<li>
+				<a class="project-status-link">Started []</a>
+			</li>
+			<li>
+				<a class="project-status-link">Completed []</a>
+			</li>
+		</ul>
+	</div>
+	@await Html.PartialAsync("Partials/_ProjectCardPartial")	
+</div>
