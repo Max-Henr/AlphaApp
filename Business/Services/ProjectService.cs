@@ -37,7 +37,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
                 orderByDescending: true,
                 sortBy: s => s.Created,
                 filterBy: null,
-                i => i.AppUser,
+                i => i.ProjectTeamMember,
                 i => i.Status,
                 i => i.Client
             );
@@ -50,7 +50,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         var response = await _projectRepository.GetAsync
             (
                 filterBy: x => x.Id == id,
-                i => i.AppUser,
+                i => i.ProjectTeamMember,
                 i => i.Status,
                 i => i.Client
             );

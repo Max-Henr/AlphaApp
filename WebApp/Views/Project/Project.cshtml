@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProjectConnectModel
+@{
 	Layout = "_Layout";
 }
 
@@ -21,4 +22,5 @@
 		</ul>
 	</div>
 	@await Html.PartialAsync("Partials/_ProjectCardPartial")	
+	@await Html.PartialAsync("Partials/_AddProjectPartial")
 </div>

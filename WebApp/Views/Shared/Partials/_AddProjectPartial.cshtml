@@ -1,4 +1,5 @@
-﻿@model ProjectModel
+﻿@model ProjectConnectModel
+
 
 <div class="add-project-modal" id="project-modal">
 	<div class="modal-content">
@@ -8,29 +9,37 @@
 				icon
 			</button>
 		</div>
-		<div class="project-name-field">
-			<label class="field-label" asp-for="projectName"></label>
-			<input class="text-input" asp-for="projectName" />
-			<span asp-validation-for="projectName"></span>
-		</div>
-		<div class="client-name-field">
-			<label class="field-label" asp-for="clientName"></label>
-			<input class="text-input" asp-for="clientName" />
-			<span asp-validation-for="clientName"></span>
-		</div>
-		<div class="description-field">
-			<label class="field-label" asp-for="projectDescription"></label>
-			<textarea class="text-input description-input" asp-for="projectDescription"></textarea>
-		</div>
-		<div class="date-field">
-			<div>
-				<label class="field-label" asp-for="startDate"></label>
-				<input class="text-input" type="date" asp-for="startDate"/>
+		<form method="post" asp-controller="Project" asp-action="Project" novalidate>
+			<div class="project-name-field">
+				<label class="field-label" asp-for="Form.ProjectName"></label>
+				<input class="text-input" asp-for="Form.ProjectName" />
+				<span asp-validation-for="Form.ProjectName"></span>
 			</div>
-			<div>
-				<label class="field-label" asp-for="endDate"></label>
-				<input class="text-input" type="date" asp-for="endDate"/>
+			<div class="client-name-field">
+				@Html.DropDownListFor(model => model.Clients, new SelectList(Model.Clients, "Id", "ClientName"))
 			</div>
-		</div>
+			<div class="description-field">
+			<label class="field-label" asp-for="Form.ProjectDescription"></label>
+			<textarea class="text-input description-input" asp-for="Form.ProjectDescription"></textarea>
+			</div>
+			<div class="date-field">
+				<div>
+				<label class="field-label" asp-for="Form.StartDate"></label>
+				<input class="text-input" type="date" asp-for="Form.StartDate" />
+				</div>
+				<div>
+				<label class="field-label" asp-for="Form.EndDate"></label>
+				<input class="text-input" type="date" asp-for="Form.EndDate" />
+				</div>
+			</div>
+			<div class="team-member-field">
+				@Html.DropDownListFor(model => model.TeamMembers, new SelectList(Model.TeamMembers, "Id", "FirstName"))	
+			</div>
+			<div class="budget-field">
+				<label class="field-label" asp-for="Form.Budget"></label>
+				<input class="text-input" type="number" asp-for="Form.Budget" />
+			</div>
+			<input type="submit" value="Create" class="btn-sign-in"/>
+		</form>
 	</div>
 </div>
