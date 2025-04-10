@@ -21,6 +21,9 @@
 			</li>
 		</ul>
 	</div>
-	@await Html.PartialAsync("Partials/_ProjectCardPartial")	
+	@foreach (var project in Model.Projects)
+	{
+		<partial name="Partials/_ProjectCardPartial" model="project"/>
+	}
 	@await Html.PartialAsync("Partials/_AddProjectPartial")
 </div>

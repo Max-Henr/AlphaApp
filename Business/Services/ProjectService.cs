@@ -19,10 +19,22 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         if (formData == null)
             return new ProjectResult { IsSuccess = false, StatusCode = 400, ErrorMessage = "Invalid data" };
 
+        if(formData.StartDate == null || formData.EndDate == null)
+        {
+            return new ProjectResult { IsSuccess = false, StatusCode = 400, ErrorMessage = "Start date and end date are required" };
+        }
+
+
         var projectEntity = formData.MapTo<ProjectEntity>();
         var statusResult = await _statusService.GetStatusByIdAsync("1");
         var status = statusResult.Result;
         projectEntity.StatusId = status!.Id;
+
+        projectEntity.ProjectTeamMember = formData.TeamMemberIds.Select(userId => new ProjectTeamMemberEntity
+        {
+            AppUserId = userId,
+            ProjectId = projectEntity.Id 
+        }).ToList();
 
         var result = await _projectRepository.CreateAsync(projectEntity);
         return result.IsSuccess
@@ -41,7 +53,6 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
                 i => i.Status,
                 i => i.Client
             );
-
         return response.MapTo<ProjectResult<IEnumerable<Project>>>();
 
     }

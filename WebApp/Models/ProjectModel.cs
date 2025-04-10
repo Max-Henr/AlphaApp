@@ -12,7 +12,7 @@ public class ProjectModel
 
     [Display(Name = "Client Name", Prompt = "Client Name")]
     [Required(ErrorMessage = "Client Name is required")]
-    public string Client { get; set; } = null!;
+    public string ClientId { get; set; } = null!;
 
     [Display(Name = "Project Description", Prompt = "Project Description")]
     [Required(ErrorMessage = "Project Description is required")]
@@ -28,8 +28,7 @@ public class ProjectModel
 
     [Display(Name = "Team Members", Prompt = "Team Members")]
     [Required(ErrorMessage = "Team Members are required")]
-    [RegularExpression(@"^[a-zA-Z, ]+$", ErrorMessage = "Invalid team members format")]
-    public string TeamMembers { get; set; } = null!;
+    public List<string> TeamMemberIds { get; set; } = [];
 
     [Display(Name = "Budget", Prompt = "Budget")]
     [Required(ErrorMessage = "Budget is required")]

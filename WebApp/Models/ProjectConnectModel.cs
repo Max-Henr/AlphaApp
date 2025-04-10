@@ -9,4 +9,6 @@ public class ProjectConnectModel
     public IEnumerable<AppUser> TeamMembers { get; set; } = [];
 
     public IEnumerable<Client> Clients { get; set; } = [];
+
+    public IEnumerable<Project> Projects { get; set; } = [];
 }

@@ -1,18 +1,21 @@
-﻿<div class="project-card">
+﻿@using Domain.Models
+@model Project
+
+<div class="project-card">
 	<div class="card-header">
 		<div class="project-icon">
 			<img class="project-alpha-image" src="~/Images/Vector 6.svg"/>
 		</div>
 		<div class="card-title">
-			<h2>Website Redesign</h2>
-			<span>Gitlab Inc.</span>
+			<h2>@Model.ProjectName</h2>
+			<span>@Model.ClientName</span>
 		</div>
 		<button class="btn-project-menu">
 			<i class="fa-solid fa-ellipsis-vertical project-menu"></i>
 		</button>		
 	</div>
 	<div class="card-description">
-		<p> It is necessary to develop a website redesign in a corporate style</p>
+		<p>@Model.ProjectDescription</p>
 	</div>
 	<div class="card-footer">
 		<div class="project-time-left">
@@ -20,7 +23,10 @@
 			<span>1 week left</span>
 		</div>
 		<div>
-			<span>icon</span>
+			@foreach (var name in Model.TeamMemberNames)
+			{
+				<span class="team-member">@name</span>
+			}
 		</div>		
 	</div>
 </div>

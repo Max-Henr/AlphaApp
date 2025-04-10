@@ -16,7 +16,12 @@
 				<span asp-validation-for="Form.ProjectName"></span>
 			</div>
 			<div class="client-name-field">
-				@Html.DropDownListFor(model => model.Clients, new SelectList(Model.Clients, "Id", "ClientName"))
+				@Html.DropDownListFor(
+					model => model.Form.ClientId,
+					new SelectList(Model.Clients, "Id", "ClientName"),
+					"Select a client",
+					new { @class = "text-input" }
+				)
 			</div>
 			<div class="description-field">
 			<label class="field-label" asp-for="Form.ProjectDescription"></label>
@@ -33,7 +38,26 @@
 				</div>
 			</div>
 			<div class="team-member-field">
-				@Html.DropDownListFor(model => model.TeamMembers, new SelectList(Model.TeamMembers, "Id", "FirstName"))	
+				<label class="field-label" asp-for="Form.TeamMemberIds">Team Members</label>
+				<select asp-for="Form.TeamMemberIds"
+					asp-items="@(new MultiSelectList(Model.TeamMembers, "Id", "FirstName"))"
+					multiple
+					class="text-input"
+					size="5">
+				</select>
+				<label>Members</label>
+				<div class="member-container" id="memberContainer">
+					<!-- Pills get added here -->
+					<input type="text" id="memberSearch" placeholder="Search..." class="search-input" />
+					<span class="search-icon">&#128269;</span>
+				</div>
+
+				<div class="member-list" id="memberList">
+					@foreach (var member in Model.TeamMembers.Where(m => Model.Form.TeamMemberIds.Contains(m.Id)))
+					{
+						<span class="team-member">@member.FirstName</span>
+					}
+				</div>
 			</div>
 			<div class="budget-field">
 				<label class="field-label" asp-for="Form.Budget"></label>

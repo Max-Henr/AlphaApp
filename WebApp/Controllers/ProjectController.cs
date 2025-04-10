@@ -22,17 +22,21 @@ namespace WebApp.Controllers
 
         public async Task<IActionResult> Project()
         {
-            var members = await _appUserService.GetAppUserAsync();
-            var clients = await _clientService.GetClientAsync();
+            var membersResult = await _appUserService.GetAppUserAsync();
+            var clientsResult = await _clientService.GetClientAsync();
+            var projectsResult = await _projectService.GetProjectsAsync();
 
-            var member = members.Result?.ToList() ?? new List<AppUser>();
-            var client = clients.Result?.ToList() ?? new List<Client>();
+            var member = membersResult.Result?.ToList() ?? new List<AppUser>();
+            var client = clientsResult.Result?.ToList() ?? new List<Client>();
+            var project = projectsResult.Result?.ToList() ?? new List<Project>();
+
 
             var projectModel = new ProjectConnectModel()
             {
                 TeamMembers = member,
                 Form = new ProjectModel(),
-                Clients = client
+                Clients = client,
+                Projects = project
             };
             return View(projectModel);
         }

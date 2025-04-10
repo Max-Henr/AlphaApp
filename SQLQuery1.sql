@@ -1,0 +1,5 @@
+﻿SELECT [p].[Id], [p].[ProjectName], [p].[ProjectDescription], [p].[Created]
+FROM [Projects] AS [p]
+INNER JOIN [Status] AS [s] ON [p].[StatusId] = [s].[Id]
+INNER JOIN [Clients] AS [c] ON [p].[ClientId] = [c].[Id]
+LEFT JOIN [ProjectTeamMembers] AS [p0] ON [p].[Id] = [p0].[ProjectId]

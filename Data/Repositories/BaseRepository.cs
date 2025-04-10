@@ -4,6 +4,7 @@ using Data.Context;
 using Data.Interfaces;
 using Data.Models;
 using Domain.Extensions;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
