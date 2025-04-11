@@ -43,12 +43,38 @@ namespace WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Project(ProjectConnectModel model)
         {
-             var addProjectFormData = model.Form.MapTo<AddProjectFormData>();
-             var result = await _projectService.CreateProjectAsync(addProjectFormData);
+            var addProjectFormData = model.Form.MapTo<AddProjectFormData>();
+            var result = await _projectService.CreateProjectAsync(addProjectFormData);
 
-             return RedirectToAction("Project");
+            return RedirectToAction("Project");
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteProject(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Project");
+            }
+
+            var result = await _projectService.RemoveAsync(id);
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Project");
+            }
+            return RedirectToAction("Project");
+
+            //var projectResult = await _projectService.GetProjectAsync(id);
+            //if (projectResult.IsSuccess)
+            //{
+            //    var result = await _projectService.DeleteProjectAsync(id);
+            //    if (result.IsSuccess)
+            //    {
+            //        return RedirectToAction("Project");
+            //    }
+            //}
+
+        }
     }
 }

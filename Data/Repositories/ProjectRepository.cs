@@ -34,6 +34,7 @@ public class ProjectRepository(AppDBContext context) : BaseRepository<ProjectEnt
 
         var result = entities.Select(entity => new Project
         {
+            Id = entity.Id,
             ProjectName = entity.ProjectName,
             ProjectDescription = entity.ProjectDescription,
             ClientName = entity.Client.ClientName,

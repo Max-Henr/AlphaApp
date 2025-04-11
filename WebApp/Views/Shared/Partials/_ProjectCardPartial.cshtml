@@ -10,9 +10,12 @@
 			<h2>@Model.ProjectName</h2>
 			<span>@Model.ClientName</span>
 		</div>
-		<button class="btn-project-menu">
-			<i class="fa-solid fa-ellipsis-vertical project-menu"></i>
-		</button>		
+		<form asp-action="DeleteProject" asp-controller="Project" method="post">
+			<input type="hidden" name="id" value="@Model.Id" />
+			<button class="btn-project-menu"  >
+				<i class="fa-solid fa-ellipsis-vertical project-menu"></i>
+			</button>		
+		</form>
 	</div>
 	<div class="card-description">
 		<p>@Model.ProjectDescription</p>

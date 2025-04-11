@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq.Expressions;
 using Data.Context;
+using Data.Entities;
 using Data.Interfaces;
 using Data.Models;
 using Domain.Extensions;
@@ -131,22 +132,22 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
 
     //Delete
 
-    public virtual async Task<RepositoryResult<bool>> DeleteAsync(TEntity entity)
+    public virtual async Task<RepositoryResult<bool>> RemoveAsync(Expression<Func<TEntity, bool>> expression)
     {
-        if (entity == null)
-            return new RepositoryResult<bool> { IsSuccess = false, StatusCode = 400, ErrorMessage = "Entity is null" };
         try
         {
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
-            return new RepositoryResult<bool> { IsSuccess = true, StatusCode = 200 };
+            var entity = await _dbSet.FirstOrDefaultAsync(expression);
+            if (entity != null)
+            {
+                _context.Remove(entity);
+                await _context.SaveChangesAsync();
+                return new RepositoryResult<bool> { IsSuccess = true, StatusCode = 200 };
+            }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Error Deleting {nameof(TEntity)} entity :: {ex.Message}");
-            return new RepositoryResult<bool> { IsSuccess = false, StatusCode = 500, ErrorMessage = ex.Message };
+            Debug.WriteLine($"Error Removing {nameof(TEntity)} entity :: {ex.Message}");
         }
+        return new RepositoryResult<bool> { IsSuccess = false, StatusCode = 500, ErrorMessage = "Error removing entity" };
     }
-
 }
-

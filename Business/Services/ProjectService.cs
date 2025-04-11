@@ -2,6 +2,7 @@
 using Business.Models;
 using Data.Entities;
 using Data.Interfaces;
+using Data.Models;
 using Domain.Extensions;
 using Domain.Models;
 
@@ -19,7 +20,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         if (formData == null)
             return new ProjectResult { IsSuccess = false, StatusCode = 400, ErrorMessage = "Invalid data" };
 
-        if(formData.StartDate == null || formData.EndDate == null)
+        if (formData.StartDate == null || formData.EndDate == null)
         {
             return new ProjectResult { IsSuccess = false, StatusCode = 400, ErrorMessage = "Start date and end date are required" };
         }
@@ -33,7 +34,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         projectEntity.ProjectTeamMember = formData.TeamMemberIds.Select(userId => new ProjectTeamMemberEntity
         {
             AppUserId = userId,
-            ProjectId = projectEntity.Id 
+            ProjectId = projectEntity.Id
         }).ToList();
 
         var result = await _projectRepository.CreateAsync(projectEntity);
@@ -68,5 +69,14 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
         return response.MapTo<ProjectResult<Project>>();
 
+    }
+
+    public async Task<ProjectResult> RemoveAsync(string id)
+    {
+        var result = await _projectRepository.RemoveAsync(x => x.Id == id);
+
+        return result.IsSuccess
+            ? new ProjectResult { IsSuccess = true, StatusCode = 200 }
+            : new ProjectResult { IsSuccess = false, StatusCode = 500, ErrorMessage = result.ErrorMessage };
     }
 }
