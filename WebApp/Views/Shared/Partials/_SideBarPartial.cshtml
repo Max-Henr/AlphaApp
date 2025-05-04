@@ -1,9 +1,9 @@
 ﻿
 	<div class="sideBar-container">
-		<div class="sideBar-header">
+		<a asp-action="Index" asp-controller="Home" class ="sideBar-header">
 			<img src="/Images/alphaicon.svg" alt="Alpha Icon" />
 			<h1 class="alpha-title">alpha</h1>
-		</div>
+		</a>
 		<div class="sideBar-content">
 		@if (SignInManager.IsSignedIn(User)){
 			<ul>

@@ -8,10 +8,10 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    padding-top: 7rem;
+    padding-top: 5rem;
 }
 .sign-in-title{
-    color: blue;
+    color: var(--heading);
 }
 .sign-in-form {
     display: flex;
@@ -39,6 +39,7 @@
 }
 .redirect-to-register{
     margin-top: 4.5rem;
+    padding-bottom: 1rem;
     a{
          color: var(--accent);
      }

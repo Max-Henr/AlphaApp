@@ -4,7 +4,8 @@
     padding: 1rem
 }
 .alpha-title{
-    font-family: var(--font-comfortaa)
+    font-family: var(--font-comfortaa);
+    color: var(--heading)
 }
 .sideBar-container {
     background-color: var(--bg-light);

@@ -65,7 +65,7 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
             if (result.Succeeded)
             {
                 var addToRoleResult = await AddAppUserToRole(appUserEntity.Id, roleName);
-                return result.Succeeded
+                return addToRoleResult.IsSuccess
                     ? new AppUserResult { IsSuccess = true, StatusCode = 201 }
                     : new AppUserResult { IsSuccess = false, StatusCode = 201, ErrorMessage = "User Created But Not Added To Default Role" };
             }

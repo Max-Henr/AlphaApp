@@ -5,6 +5,7 @@ using Data.Context;
 using Data.Entities;
 using Domain.Extensions;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -88,6 +89,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> AddProject(ProjectConnectModel model)
         {
             var addProjectFormData = model.Form.MapTo<AddProjectFormData>();
@@ -115,6 +117,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> EditProject(string id)
         {
             var projectResult = await _projectService.GetProjectAsync(id);
