@@ -10,12 +10,33 @@
 			<h2>@Model.ProjectName</h2>
 			<span>@Model.ClientName</span>
 		</div>
-		<form asp-action="DeleteProject" asp-controller="Project" method="post">
-			<input type="hidden" name="id" value="@Model.Id" />
-			<button class="btn-project-menu"  >
+		<div class="project-menu-container dropdown-container">
+			<button type="button" class="btn-project-menu" data-type="dropdown" >
 				<i class="fa-solid fa-ellipsis-vertical project-menu"></i>
-			</button>		
-		</form>
+			</button>
+			<div class="dropdown dropdown-edit">
+					<button type="button" class="btn-edit-project" 
+							data-modal="true"
+							data-url="@Url.Action("EditProject", "Project", new { id = Model.Id })">
+						<i class="fa-solid fa-pen-to-square"></i>
+						<span>Edit</span>
+					</button>
+				<button class="btn-add-member">
+					<i class="fa-solid fa-user-plus"></i>
+					<span>Add Member</span>
+				</button>
+				<div class="divider-line">
+
+				</div>
+				<form asp-action="DeleteProject" asp-controller="Project" method="post">
+					<input type="hidden" name="id" value="@Model.Id" />	
+					<button class="btn-delete">
+						<i class="fa-solid fa-trash-can"></i>
+						<span>Delete</span>
+					</button>
+				</form>
+			</div>
+		</div>
 	</div>
 	<div class="card-description">
 		<p>@Model.ProjectDescription</p>
@@ -23,7 +44,7 @@
 	<div class="card-footer">
 		<div class="project-time-left">
 			<i class="fa-solid fa-clock"></i>
-			<span>1 week left</span>
+			<span>@Model.DaysLeft Days Left</span>
 		</div>
 		<div>
 			@foreach (var name in Model.TeamMemberNames)

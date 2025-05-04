@@ -37,14 +37,6 @@
     align-items: center;
     align-self: start;
 }
-.btn-sign-in{
-    width: 100%;
-    height: 45px;
-    margin-top: 1.5rem;
-    border-radius: 12px;
-    background-color: var(--accent);
-    color: white;
-}
 .redirect-to-register{
     margin-top: 4.5rem;
     a{

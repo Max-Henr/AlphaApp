@@ -25,3 +25,19 @@
     width: 100%;
     position: relative;
 }
+form .input-validation-error {
+    border: 1px solid red;
+    background-color: #ffe5e5;
+    outline: none;
+}
+
+form .field-validation-error {
+    color: red;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 4px;
+}
+
+form .field-validation-valid {
+    display: none;
+}

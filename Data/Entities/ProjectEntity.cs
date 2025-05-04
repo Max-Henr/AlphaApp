@@ -11,8 +11,8 @@ public class ProjectEntity
     public string? Image { get; set; }
     public string ProjectName { get; set; } = null!;
     public string ProjectDescription { get; set; } = null!;
-    public DateOnly StartDate { get; set; }
-    public DateOnly EndDate { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
     public DateTime Created { get; set; } = DateTime.Now;
 
     [Column(TypeName = "decimal(10, 2)")]

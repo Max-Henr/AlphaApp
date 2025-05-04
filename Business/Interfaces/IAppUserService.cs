@@ -8,5 +8,6 @@ namespace Business.Services
         Task<AppUserResult> AddAppUserToRole(string userId, string roleName);
         Task<AppUserResult> CreateAppUserAsync(RegisterFormData formData, string roleName = "User");
         Task<AppUserResult> GetAppUserAsync();
+        Task<AppUser> GetAppUserByEmailAsync(string email);
     }
 }

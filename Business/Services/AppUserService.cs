@@ -20,7 +20,17 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
         var result = await _appUserRepository.GetAllAsync();
         return result.MapTo<AppUserResult>();
     }
+    public async Task<AppUser> GetAppUserByEmailAsync(string email)
+    {
+        var response = await _appUserRepository.GetAsync(x => x.Email == email);
 
+        return new AppUser
+        {
+            Email = response.Result?.Email,
+            FirstName = response.Result?.FirstName,
+            LastName = response.Result?.LastName,
+        };
+    }
     public async Task<AppUserResult> AddAppUserToRole(string userId, string roleName)
     {
         if (!await _roleManager.RoleExistsAsync(roleName))

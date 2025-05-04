@@ -13,11 +13,13 @@
     width: 150px;
     height: 150px;
     outline: 2px dashed lightgray;
+    margin-top: 2rem;
     outline-offset: -2px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
+    place-self: center;
 }
 .modal-content {
     height: 98%;
@@ -43,6 +45,9 @@
     gap: 1rem;
     width: 100%;
     justify-content: center;
+}
+.date-input{
+    width: 250px;
 }
 select.text-input[multiple] {
     min-height: 120px;
@@ -114,4 +119,21 @@ select.text-input[multiple] {
 
 .member-list div:hover {
     background-color: #f0f0f0;
+}
+
+form .input-validation-error {
+    border: 1px solid red;
+    background-color: #ffe5e5;
+    outline: none;
+}
+
+form .field-validation-error {
+    color: red;
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 4px;
+}
+
+form .field-validation-valid {
+    display: none;
 }

@@ -115,10 +115,10 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
 
     public virtual async Task<RepositoryResult<bool>> UpdateAsync(TEntity entity)
     {
-        if (entity == null)
-            return new RepositoryResult<bool> { IsSuccess = false, StatusCode = 400, ErrorMessage = "Entity is null" };
         try
         {
+            if (entity == null)
+                return new RepositoryResult<bool> { IsSuccess = false, StatusCode = 400, ErrorMessage = "Entity is null" };
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();
             return new RepositoryResult<bool> { IsSuccess = true, StatusCode = 200 };

@@ -2,7 +2,7 @@
 @{
 	Layout = "_Layout";
 }
-
+<div class="project-container">
 <div class="project-flex">
 	<div class="project-nav">
 		<h1 class="project-title">Projects</h1>
@@ -11,19 +11,26 @@
 		</button>
 		<ul class="project-status">
 			<li>
-				<a class="project-status-link">All []</a>				
+					<a asp-action="Project" asp-controller="Project" class="project-status-link">All [@(Model.AllProjects?.Count() ?? 0)]</a>
 			</li>
 			<li>
-				<a class="project-status-link">Started []</a>
+					<a asp-action="Started" asp-controller="Project" class="project-status-link">Started [@(Model.AllProjects?.Count(p => p.Status.Id == "1") ?? 0)]</a>
 			</li>
 			<li>
-				<a class="project-status-link">Completed []</a>
+					<a asp-action="completed" asp-controller="Project" class="project-status-link">Completed [@(Model.AllProjects?.Count(p => p.Status.Id == "2") ?? 0)]</a>
 			</li>
 		</ul>
 	</div>
-	@foreach (var project in Model.Projects)
+</div>
+<div class="project-cards-flex">
+	@foreach (var project in Model.Projects!)
 	{
 		<partial name="Partials/_ProjectCardPartial" model="project"/>
+
 	}
-	@await Html.PartialAsync("Partials/_AddProjectPartial")
+</div>
+		@await Html.PartialAsync("Partials/_AddProjectPartial")
+	<div id="modal-placeholder">
+		@await Html.PartialAsync("Partials/_EditProjectPartial", Model)
+	</div>
 </div>

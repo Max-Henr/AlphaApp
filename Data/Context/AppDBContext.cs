@@ -31,7 +31,7 @@ public class AppDBContext(DbContextOptions<AppDBContext> options) : IdentityDbCo
             new StatusEntity
             {
                 Id = "1",
-                StatusName = "In Progress"
+                StatusName = "Started"
             },
             new StatusEntity
             {

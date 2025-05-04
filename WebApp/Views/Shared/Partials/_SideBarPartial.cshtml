@@ -2,9 +2,10 @@
 	<div class="sideBar-container">
 		<div class="sideBar-header">
 			<img src="/Images/alphaicon.svg" alt="Alpha Icon" />
-			<h1>alpha</h1>
+			<h1 class="alpha-title">alpha</h1>
 		</div>
 		<div class="sideBar-content">
+		@if (SignInManager.IsSignedIn(User)){
 			<ul>
 				<li>
 					<a class="btn-sideBar" asp-area="" asp-controller="Project" asp-action="Project">
@@ -17,5 +18,22 @@
 					<span>Team Members</span>
 				</li>
 			</ul>
+		}
+		else{
+			<ul>
+				<li>
+					<div class="btn-sideBar">
+						<i class="fa-solid fa-lock"></i>
+						<span>Projects</span>
+					</div>
+				</li>
+				<li>
+					<div class="btn-sideBar">
+						<i class="fa-solid fa-lock"></i>
+						<span>Team Members</span>
+					</div>
+				</li>
+			</ul>
+		}
 		</div>
 	</div>

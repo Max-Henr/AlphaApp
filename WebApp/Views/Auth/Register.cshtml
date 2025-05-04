@@ -43,8 +43,9 @@
 					<span asp-validation-for="TermsAndConditions"></span>
 				</div>
 			</div>
-			<input class="btn-sign-in" type="submit" value="Create Account" />
+			<input class="btn-primary" type="submit" value="Create Account" />
 		</form>
 		<span class="redirect-to-sign-in">Already have an account <a asp-area="Identity" asp-controller="Auth" asp-action="SignIn">Log In</a></span>
 	</div>
 </div>
+@await Html.PartialAsync("_ValidationScriptsPartial")

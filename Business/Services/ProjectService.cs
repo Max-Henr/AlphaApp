@@ -56,6 +56,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             );
         return response.MapTo<ProjectResult<IEnumerable<Project>>>();
 
+
     }
     public async Task<ProjectResult<Project>> GetProjectAsync(String id)
     {
@@ -70,7 +71,33 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         return response.MapTo<ProjectResult<Project>>();
 
     }
+    public async Task<ProjectResult> UpdateProjectAsync(UpdateProjectFormData formData)
+    {
+        if (formData == null)
+            return new ProjectResult { IsSuccess = false, StatusCode = 400, ErrorMessage = "Invalid data" };
 
+        var projectEntity = new ProjectEntity
+        {
+            Id = formData.Id,
+            Image = formData.Image,
+            ProjectName = formData.ProjectName,
+            ProjectDescription = formData.ProjectDescription!,
+            StartDate = formData.StartDate,
+            EndDate = formData.EndDate,
+            Budget = formData.Budget,
+            ClientId = formData.ClientId,
+            StatusId = formData.StatusId,
+            ProjectTeamMember = formData.TeamMemberIds.Select(userId => new ProjectTeamMemberEntity
+            {
+                AppUserId = userId,
+                ProjectId = formData.Id
+            }).ToList()
+        };
+        var result = await _projectRepository.UpdateWithMembers(projectEntity);
+        return result.IsSuccess
+            ? new ProjectResult { IsSuccess = true, StatusCode = 200 }
+            : new ProjectResult { IsSuccess = false, StatusCode = 500, ErrorMessage = result.ErrorMessage };
+    }
     public async Task<ProjectResult> RemoveAsync(string id)
     {
         var result = await _projectRepository.RemoveAsync(x => x.Id == id);
@@ -80,3 +107,4 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             : new ProjectResult { IsSuccess = false, StatusCode = 500, ErrorMessage = result.ErrorMessage };
     }
 }
+

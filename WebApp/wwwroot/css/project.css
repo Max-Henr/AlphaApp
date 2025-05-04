@@ -1,4 +1,7 @@
-﻿.project-flex {
+﻿.project-container{
+    max-width: 1170px;
+}
+.project-flex {
     display: flex;
     flex-direction: column;
     margin-left: 2rem;
@@ -39,11 +42,16 @@
     gap: 1rem;
 }
 .project-status-link{
+    color: var(--text-color);
     &:hover{
                 text-decoration: underline;
-                text-underline-offset: 14px;
+                text-underline-offset: 16px;
                 text-decoration-thickness: 2px;
                 cursor: pointer;
                 color: var(--accent);
            }
+}
+.project-cards-flex {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }

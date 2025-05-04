@@ -3,6 +3,9 @@
     gap: 1rem;
     padding: 1rem
 }
+.alpha-title{
+    font-family: var(--font-comfortaa)
+}
 .sideBar-container {
     background-color: var(--bg-light);
     height: 100vh;
